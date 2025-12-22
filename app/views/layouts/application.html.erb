@@ -24,6 +24,9 @@
   </head>
 
   <body>
-    <%= yield %>
+  <!-- インストールした際、自動で書き換えられる（横並びflexが原因） -->
+    <main class="container mx-auto mt-28 px-5 ">
+      <%= yield %>
+    </main>
   </body>
 </html>
