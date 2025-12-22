@@ -1,12 +1,11 @@
-<h1>データの受け渡し実験</h1>
+<h1>投稿一覧</h1>
 
-<!-- 実験1: ローカル変数を表示しようとしてみる -->
-<%# <p>ローカル変数の結果: <%= title %>
-<%# ⬆️エラーが出る %>
-
-<!-- 実験2: インスタンス変数を表示してみる -->
-<p>インスタンス変数の結果: <%= @memo %></p>
-
-<!-- 実験3: ハッシュの中身を表示してみる -->
-<p>ユーザー名: <%= @user_info[:name] %> さん</p>
-<p>点数: <%= @user_info[:score] %> 点</p>
+<%# @posts という配列から、1つずつ post に入れて繰り返す %>
+<% @posts.each do |post| %>
+  <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+    <p><%= post.content %></p>
+    
+    <%# Timeクラスの知識！ created_at（作成日時）を表示 %>
+    <small>投稿日時: <%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %></small>
+  </div>
+<% end %>
