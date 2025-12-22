@@ -23,9 +23,16 @@
 <%# @posts という配列から、1つずつ post に入れて繰り返す %>
 <% @posts.each do |post| %>
   <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-    <p><%= post.content %></p>
-    
-    <%# Timeクラスの知識！ created_at（作成日時）を表示 %>
-    <small>投稿日時: <%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %></small>
+
+    <!-- 変更後：編集リンクを追加 -->
+    <div class="flex justify-between items-center">
+      <div>
+        <p class="text-lg"><%= post.content %></p>
+        <small class="text-gray-500"><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+      </div>
+      
+      <%# edit_post_path(post) で「その投稿の編集画面」へのURLになる %>
+      <%= link_to "編集", edit_post_path(post), class: "text-blue-500 hover:text-blue-700 underline" %>
+    </div>
   </div>
 <% end %>

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # トップページを postsコントローラーの indexアクションに設定
   root "posts#index"
+  
   # これを追加：投稿を保存するための通り道（POSTリクエスト）
-  post "posts", to: "posts#create"
+  # post "posts", to: "posts#create"
+
+  # 【重要】この1行だけで、7つの基本ルート（index, show, new, create, edit, update, destroy）が全部作られます！
+  resources :posts
 end
