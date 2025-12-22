@@ -15,8 +15,6 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  # --- ここから追加 ---
-
   # 編集画面を表示するアクション
   def edit
     # URLの「/posts/1/edit」の「1」を params[:id] で受け取る
@@ -34,6 +32,20 @@ class PostsController < ApplicationController
     
     # トップページに戻る
     redirect_to root_path
+  end
+  
+  # --- ここから追加 ---
+  
+  def destroy
+    # 1. 消したいデータをIDで探す
+    post = Post.find(params[:id])
+    
+    # 2. 削除する（Rubyの destroyメソッド）
+    post.destroy
+    
+    # 3. トップページに戻る
+    redirect_to root_path, status: :see_other
+    # ※ status: :see_other は、Rails 7（Turbo）で削除後にきれいにリダイレクトさせるためのおまじない
   end
   
   # --- ここまで ---
