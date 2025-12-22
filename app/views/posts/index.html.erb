@@ -1,4 +1,24 @@
-<h1>投稿一覧</h1>
+<h1>掲示板アプリ</h1>
+
+<!-- 新規投稿フォーム -->
+<div style="background-color: #f0f0f0; padding: 15px; margin-bottom: 20px;">
+  <h3>新規投稿</h3>
+  
+  <%# model: @post と書くことで、Postモデル用のフォームだとRailsが判断してくれる %>
+  <%= form_with model: @post, url: posts_path, local: true do |f| %>
+    
+    <%# テキスト入力欄 %>
+    <%= f.text_field :content, placeholder: "ここに入力してね" %>
+    
+    <%# 送信ボタン %>
+    <%= f.submit "投稿する" %>
+    
+  <% end %>
+</div>
+
+<hr>
+
+<h2>投稿一覧</h2>
 
 <%# @posts という配列から、1つずつ post に入れて繰り返す %>
 <% @posts.each do |post| %>
