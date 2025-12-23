@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   # アクションが動く「前（before）」に、set_postメソッドを実行せよ！という命令
   # only: [...] で、実行したいアクションだけを指定します
-  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy, :show]
 
   def index
     # 新しい投稿を作るための「空っぽのインスタンス」を用意
@@ -17,6 +17,10 @@ class PostsController < ApplicationController
     
     # トップページに戻る（リダイレクト）
     redirect_to root_path
+  end
+
+  # showアクションを追加（中身は空でOK。before_actionがやってくれるから）
+  def show
   end
 
   # 編集画面を表示するアクション

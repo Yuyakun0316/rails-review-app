@@ -1,0 +1,42 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="bg-white shadow rounded-lg p-6 mb-6">
+    <h1 class="text-3xl font-bold mb-4">投稿詳細</h1>
+    <p class="text-xl mb-4"><%= @post.content %></p>
+    <p class="text-gray-500 text-sm">投稿日: <%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+  </div>
+
+  <div class="flex gap-4">
+    <%= link_to "編集する", edit_post_path(@post), class: "text-blue-500 underline" %>
+    <%= link_to "一覧に戻る", root_path, class: "text-gray-500 underline" %>
+  </div>
+  
+  <hr class="my-6">
+
+  <!-- コメントエリア -->
+  <div class="bg-gray-50 p-6 rounded-lg">
+    <h2 class="text-xl font-bold mb-4">コメント一覧</h2>
+    
+    <!-- すでにあるコメントを表示 -->
+    <div class="mb-6 space-y-4">
+      <% if @post.comments.any? %>
+        <% @post.comments.each do |comment| %>
+          <div class="bg-white p-3 rounded shadow-sm">
+            <p><%= comment.content %></p>
+            <small class="text-gray-400"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-gray-500">コメントはまだありません。</p>
+      <% end %>
+    </div>
+
+    <!-- コメント投稿フォーム -->
+    <!-- model: [@post, @post.comments.build] という書き方が重要（入れ子のフォーム） -->
+    <%= form_with model: [@post, @post.comments.build], local: true do |f| %>
+      <div class="flex gap-2">
+        <%= f.text_field :content, placeholder: "コメントを書く...", class: "border p-2 rounded w-full" %>
+        <%= f.submit "送信", class: "bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600" %>
+      </div>
+    <% end %>
+  </div>
+</div>

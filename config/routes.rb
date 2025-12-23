@@ -18,5 +18,10 @@ Rails.application.routes.draw do
   # post "posts", to: "posts#create"
 
   # 【重要】この1行だけで、7つの基本ルート（index, show, new, create, edit, update, destroy）が全部作られます！
-  resources :posts
+  # resources :posts
+
+  # posts のブロックの中に resources :comments を入れる
+  resources :posts do
+    resources :comments, only: [:create] # 今回は投稿(create)だけでOK
+  end
 end
