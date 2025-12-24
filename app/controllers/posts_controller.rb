@@ -7,7 +7,9 @@ class PostsController < ApplicationController
     # 新しい投稿を作るための「空っぽのインスタンス」を用意
     # フォーム（form_with）で使うために必要！
     @post = Post.new
-    @posts = Post.all
+    # includes(:comments) を追加！
+    # これで「投稿」を取るときに「コメント」も一緒に取得してメモリに載せてくれる
+    @posts = Post.all.includes(:comments)
   end
 
   # フォームから送られてきた時のアクション
