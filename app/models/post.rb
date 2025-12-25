@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  belongs_to :user  # これを追加！
+
   # contentカラムには、値が存在（presence）していないとダメ！
   validates :content, presence: true
 

@@ -22,16 +22,20 @@
 
 <%# @posts という配列から、1つずつ post に入れて繰り返す %>
 <% @posts.each do |post| %>
-  <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
 
-    <!-- 変更後：編集リンクを追加 -->
-    <div class="flex justify-between items-center">
-      <div>
-      <%# （本文など）をクリックしたら詳細へ飛ぶようにリンクを貼ります。 %>
+    <div class="bg-white shadow rounded-lg p-6 mb-4 border border-gray-100">
+      <div class="mb-2">
+        <%# 1. 投稿内容（クリックで詳細へ） %>
         <%= link_to post_path(post), class: "hover:opacity-70" do %>
           <p class="text-lg font-bold text-gray-800"><%= post.content %></p>
         <% end %>
-        <small class="text-gray-500"><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+        
+        <div class="text-sm text-gray-500 flex gap-3 mt-2">
+          <%# 2. 投稿者情報 %>
+          <span>投稿者: <%= post.user&.email || "退会済みユーザー" %></span>
+          <%# 3. 投稿日 %>
+          <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+        </div>
       </div>
       
       <div class="flex gap-2">

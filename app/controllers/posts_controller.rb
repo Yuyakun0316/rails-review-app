@@ -14,11 +14,20 @@ class PostsController < ApplicationController
 
   # フォームから送られてきた時のアクション
   def create
-    # フォームのデータを受け取って保存
-    Post.create(post_params)
+    # 変更前：誰のか分からない状態で保存
+    # Post.create(post_params)
     
-    # トップページに戻る（リダイレクト）
-    redirect_to root_path
+    # 変更後：ログイン中のユーザーに紐付けて保存する！
+    # build は new と同じ意味ですが、アソシエーションを使う時はよく build を使います
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      redirect_to root_path, notice: "投稿しました！"
+    else
+      # 保存失敗したら、一覧画面に戻す（変数を再取得する必要あり）
+      @posts = Post.all.includes(:user) # N+1対策で :user も追加しておくとGood
+      render :index, status: :unprocessable_entity
+    end
   end
 
   # showアクションを追加（中身は空でOK。before_actionがやってくれるから）
