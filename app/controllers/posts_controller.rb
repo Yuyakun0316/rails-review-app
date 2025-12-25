@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  # index と show 以外のアクション（new, create, edit...）は、ログイン必須にする
+  before_action :authenticate_user!, except: [:index, :show]
   # アクションが動く「前（before）」に、set_postメソッドを実行せよ！という命令
   # only: [...] で、実行したいアクションだけを指定します
   before_action :set_post, only: [:edit, :update, :destroy, :show]
