@@ -23,5 +23,11 @@ module RailsReviewApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # 1. デフォルトの言語を日本語にする
+    config.i18n.default_locale = :ja
+    
+    # 2. タイムゾーンを日本時間にする（投稿日時などが日本時間になります）
+    config.time_zone = 'Tokyo'
   end
 end
