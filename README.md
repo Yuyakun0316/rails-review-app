@@ -27,6 +27,9 @@
 - Ruby on Rails 8.1.1
 - MySQL
 - Tailwind CSS (tailwindcss-rails)
+- RSpec (rspec-rails)
+- FactoryBot
+- Faker
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
@@ -50,5 +53,7 @@
 - **権限管理・セキュリティ**
   - `authenticate_user!` によるログイン必須制御
   - 投稿者本人のみが編集・削除できる権限ガードの実装
-
-## 🚀 今後の課題
+- **品質管理とテスト**:
+  - `RSpec` を導入し、モデル（User, Post）の単体テストを作成しました。
+  - バリデーションやアソシエーションが正しく機能しているかを自動テストで保証する仕組みを構築しました。
+  - `FactoryBot` と `Faker` を活用してテストデータを効率的に生成し、DRYで保守性の高いテストコードを記述しました。
