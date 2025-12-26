@@ -57,6 +57,8 @@ group :development, :test do
   gem 'rspec-rails'
   # テストデータを作るための便利ツール
   gem 'factory_bot_rails' 
+  # ランダムで値を生成する
+  gem 'faker'
 end
 
 group :development do
