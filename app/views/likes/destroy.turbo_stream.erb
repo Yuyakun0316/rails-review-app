@@ -1,0 +1,4 @@
+<%# IDが "like-button-投稿ID" の部分を、_btn.html.erb の内容で「置き換え(replace)」ろ！という命令 %>
+<%= turbo_stream.replace "like-button-#{@post.id}" do %>
+  <%= render 'likes/btn', post: @post %>
+<% end %>

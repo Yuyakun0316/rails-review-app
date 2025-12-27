@@ -37,6 +37,20 @@
           <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
         </div>
       </div>
+
+  <!-- ここからボタンエリア：flex と justify-between で左右に配置 -->
+  <div class="flex justify-between items-center mt-4 pt-2 border-t border-gray-100">
+
+  <!-- 左側：いいねボタンエリア -->
+    <div>
+      <% if user_signed_in? %>
+        <!-- ログイン中ならボタンを表示 -->
+        <%= render 'likes/btn', post: post %>
+      <% else %>
+        <!-- ログアウト中はハートの数だけ表示 -->
+        <span class="text-gray-400">♡ <%= post.likes.count %></span>
+      <% end %>
+    </div>
       
       <%# ログインしていて、かつ、投稿者本人である場合のみ表示 %>
     <% if user_signed_in? && current_user.id == post.user_id %>
@@ -49,4 +63,5 @@
       </div>
     <% end %>
   </div>
+</div>
 <% end %>

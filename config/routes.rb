@@ -24,5 +24,8 @@ Rails.application.routes.draw do
   # posts のブロックの中に resources :comments を入れる
   resources :posts do
     resources :comments, only: [:create] # 今回は投稿(create)だけでOK
+    # resource (単数形) にすると、URLに :id がつかなくなる（/posts/:post_id/like）
+    # 「自分のいいね」は1つしか存在しないから単数形でOKという考え方
+    resource :likes, only: [:create, :destroy] # いいね(create)、いいね(destroy)
   end
 end
