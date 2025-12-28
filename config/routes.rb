@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
-  get "posts/index"
+  get 'posts/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
@@ -13,8 +15,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # トップページを postsコントローラーの indexアクションに設定
-  root "posts#index"
-  
+  root 'posts#index'
+
   # これを追加：投稿を保存するための通り道（POSTリクエスト）
   # post "posts", to: "posts#create"
 
@@ -26,6 +28,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:create] # 今回は投稿(create)だけでOK
     # resource (単数形) にすると、URLに :id がつかなくなる（/posts/:post_id/like）
     # 「自分のいいね」は1つしか存在しないから単数形でOKという考え方
-    resource :likes, only: [:create, :destroy] # いいね(create)、いいね(destroy)
+    resource :likes, only: %i[create destroy] # いいね(create)、いいね(destroy)
   end
 end

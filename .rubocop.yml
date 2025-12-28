@@ -1,8 +1,44 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+AllCops:
+  # 新しいルールの提案を有効にする
+  NewCops: enable
+  # 自動生成されたファイルなどはチェックしない
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+
+# クラスなどの説明コメントを必須にしない（学習用なのでOFFでOK）
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    # データベース関連（マイグレーションやschema）は自動生成なのでチェックしない！
+    - 'db/**/*'
+    # 設定ファイルも自動生成のものが多いのでチェックしない
+    - 'config/**/*'
+
+# 「コントローラーに日本語を書くな（翻訳ファイルに移せ）」を無効化
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+# クラスの説明コメント必須を無効化
+Style/Documentation:
+  Enabled: false
+
+# 行の長さ制限（120文字）を無効化（Deviseの設定などで長くなるため）
+Layout/LineLength:
+  Enabled: false

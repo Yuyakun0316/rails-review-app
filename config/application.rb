@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,7 +28,7 @@ module RailsReviewApp
 
     # 1. デフォルトの言語を日本語にする
     config.i18n.default_locale = :ja
-    
+
     # 2. タイムゾーンを日本時間にする（投稿日時などが日本時間になります）
     config.time_zone = 'Tokyo'
   end
