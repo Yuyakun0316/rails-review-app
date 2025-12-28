@@ -3,14 +3,32 @@
 <!-- 新規投稿フォーム -->
 <div style="background-color: #f0f0f0; padding: 15px; margin-bottom: 20px;">
   <h3>新規投稿</h3>
-  
+
+<!-- フォーム全体を囲むdivに data-controller をつける -->
+<!-- これで character_count_controller.js がこのエリアを監視します -->
+<div data-controller="character-count">
+
   <%# model: @post と書くことで、Postモデル用のフォームだとRailsが判断してくれる %>
   <%= form_with model: @post, url: posts_path, local: true do |f| %>
     
-    <%# テキスト入力欄 %>
-    <%= f.text_field :content, placeholder: "ここに入力してね" %>
+    <div class="mb-2">
+      <%# 入力欄（ターゲット）: data-character-count-target="input" %>
+      <%# 入力するたびに動くアクション: data-action="input->character-count#count" %>
+      <%= f.text_area :content, 
+          class: "w-full border p-2 rounded", 
+          placeholder: "ここに入力してね",
+          rows: 3,
+          data: { 
+            character_count_target: "input", 
+            action: "input->character-count#count" 
+          } %>
+    </div>
+
+    <!-- 文字数を表示する場所（ターゲット） -->
+    <div class="text-right text-sm text-gray-500 mb-2">
+      あと <span data-character-count-target="output">140</span> 文字
+    </div>
     
-    <%# 送信ボタン %>
     <%= f.submit "投稿する", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     
   <% end %>
