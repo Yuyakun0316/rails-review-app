@@ -84,5 +84,5 @@ gem 'tailwindcss-rails', '~> 4.4'
 gem 'devise', '~> 4.9'
 
 gem 'rails-i18n'
-#ページネーション
+# ページネーション
 gem 'kaminari'

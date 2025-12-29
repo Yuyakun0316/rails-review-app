@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
     # 変更後： .page(params[:page]).per(5) を追加
     # 意味：ページ番号を受け取り、1ページあたり5件だけ表示する
-    @posts = Post.all.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # showアクションを追加（中身は空でOK。before_actionがやってくれるから）
