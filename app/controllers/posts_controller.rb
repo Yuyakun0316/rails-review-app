@@ -13,7 +13,12 @@ class PostsController < ApplicationController
     @post = Post.new
     # includes(:comments) を追加！
     # これで「投稿」を取るときに「コメント」も一緒に取得してメモリに載せてくれる
-    @posts = Post.includes(:comments)
+    # 変更前
+    # @posts = Post.all.includes(:user)
+
+    # 変更後： .page(params[:page]).per(5) を追加
+    # 意味：ページ番号を受け取り、1ページあたり5件だけ表示する
+    @posts = Post.all.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # showアクションを追加（中身は空でOK。before_actionがやってくれるから）
