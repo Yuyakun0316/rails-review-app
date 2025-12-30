@@ -21,7 +21,15 @@ class PostsController < ApplicationController
     # @posts = Post.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     # with_attached_image を追加！
     # これで「画像データ」も一緒にまとめて取ってきてくれます（N+1対策）
-    @posts = Post.all.includes(:user).with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
+    # @posts = Post.all.includes(:user).with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
+
+    # 変更後：Ransackを使う形にする
+    # 1. 検索オブジェクトを作る（params[:q] に検索ワードが入ってくる）
+    @q = Post.ransack(params[:q])
+    
+    # 2. 検索結果を取得する（result）
+    # distinct: true は重複を防ぐおまじない
+    @posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # showアクションを追加（中身は空でOK。before_actionがやってくれるから）

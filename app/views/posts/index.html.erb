@@ -1,5 +1,20 @@
 <h1>掲示板アプリ</h1>
 
+<!-- 検索フォームエリア -->
+<div class="bg-white p-4 rounded-lg shadow mb-6 border border-gray-100">
+  <p class="text-gray-500 text-sm mb-2">投稿を検索</p>
+  
+  <%# search_form_for という専用のヘルパーを使います %>
+  <%= search_form_for @q, url: root_path, class: "flex gap-2" do |f| %>
+    
+    <%# content_cont と書くと「contentカラムの中に(cont)含まれる」という検索になる %>
+    <%= f.search_field :content_cont, placeholder: "キーワードを入力...", class: "border p-2 rounded w-full" %>
+    
+    <%= f.submit "検索", class: "bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 cursor-pointer" %>
+    
+  <% end %>
+</div>
+
 <!-- 新規投稿フォーム -->
 <div style="background-color: #f0f0f0; padding: 15px; margin-bottom: 20px;">
   <h3>新規投稿</h3>

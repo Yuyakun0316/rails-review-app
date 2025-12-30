@@ -86,3 +86,5 @@ gem 'devise', '~> 4.9'
 gem 'rails-i18n'
 # ページネーション
 gem 'kaminari'
+# 検索機能
+gem 'ransack'
