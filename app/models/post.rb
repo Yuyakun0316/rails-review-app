@@ -14,12 +14,12 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   # content（本文）と created_at（日時）での検索を許可する
-  def self.ransackable_attributes(auth_object = nil)
-    ["content", "created_at"]
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[content created_at]
   end
-  
+
   # 関連するテーブル（Userなど）での検索を許可する場合
-  def self.ransackable_associations(auth_object = nil)
-    ["user"]
+  def self.ransackable_associations(_auth_object = nil)
+    ['user']
   end
 end

@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     # 変更後：Ransackを使う形にする
     # 1. 検索オブジェクトを作る（params[:q] に検索ワードが入ってくる）
     @q = Post.ransack(params[:q])
-    
+
     # 2. 検索結果を取得する（result）
     # distinct: true は重複を防ぐおまじない
     @posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
   # フォームから送られてきたデータの中から、content だけを許可する
   def post_params
     # :image を追加
-    params.require(:post).permit(:content, :image)
+    params.expect(post: %i[content image])
   end
 
   # IDからデータを1つ探してきて、インスタンス変数 @post に入れるメソッド
