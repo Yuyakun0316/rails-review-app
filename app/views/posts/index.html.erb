@@ -77,7 +77,17 @@
         
         <div class="text-sm text-gray-500 flex gap-3 mt-2">
           <%# 2. 投稿者情報 %>
-          <span>投稿者: <%= post.user&.email || "退会済みユーザー" %></span>
+          <!-- <span>投稿者: <%= post.user&.email || "退会済みユーザー" %></span> -->
+
+          <!-- 変更後：link_to で囲む -->
+          <span class="font-medium text-gray-600">
+            👤 
+            <% if post.user %>
+              <%= link_to post.user.email, user_path(post.user), class: "hover:text-blue-500 hover:underline" %>
+            <% else %>
+              退会済みユーザー
+            <% end %>
+          </span>
           <%# 3. 投稿日 %>
           <span><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
         </div>

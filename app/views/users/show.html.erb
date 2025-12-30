@@ -1,0 +1,44 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- プロフィール部分 -->
+  <div class="bg-gray-800 text-white rounded-lg p-6 mb-8 text-center">
+    <h1 class="text-3xl font-bold mb-2">
+      <%= @user.email.split("@").first %> さんのページ
+    </h1>
+    <p class="text-gray-400">
+      投稿数: <%= @user.posts.count %> 件
+    </p>
+  </div>
+
+  <h2 class="text-xl font-bold mb-4 border-b pb-2">このユーザーの投稿一覧</h2>
+
+  <!-- 投稿一覧 -->
+  <!-- posts/index.html.erb のループ部分と同じような感じ -->
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div class="bg-white shadow rounded-lg p-6 mb-4 border border-gray-100">
+        <!-- 内容 -->
+        <%= link_to post_path(post), class: "hover:opacity-70 block mb-2" do %>
+          <p class="text-lg font-bold text-gray-800"><%= post.content %></p>
+        <% end %>
+        
+        <!-- 画像 -->
+        <% if post.image.attached? %>
+          <div class="mt-3">
+            <%= image_tag post.image, class: "rounded-lg max-h-40 object-cover" %>
+          </div>
+        <% end %>
+
+        <div class="text-sm text-gray-500 mt-2">
+          <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- ページネーション -->
+    <div class="mt-4 flex justify-center pb-10">
+      <%= paginate @posts %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-center py-10">まだ投稿がありません。</p>
+  <% end %>
+</div>
