@@ -33,6 +33,9 @@
   - 文字数超過時のスタイル変更（赤字表示）
 - **ページネーション (kaminari)**
   - 投稿一覧のページ送り機能（1ページあたり5件表示）
+- **画像投稿機能 (Active Storage)**
+  - 投稿への画像添付と一覧表示
+  - `with_attached_image` によるN+1問題対策
 
 ## 🛠 使用技術
 - Ruby 3.2.0
@@ -46,6 +49,7 @@
 - Stimulus (Hotwire)
 - RuboCop (静的コード解析)
 - kaminari
+- Active Storage
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
