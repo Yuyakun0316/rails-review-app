@@ -10,4 +10,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   # 投稿はたくさんのいいねを持つ
   has_many :likes, dependent: :destroy
+  # :image という名前でファイルにアクセスできるようになります
+  has_one_attached :image
 end
