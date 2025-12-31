@@ -1,6 +1,10 @@
 <div class="container mx-auto px-4 py-8">
   <!-- プロフィール部分 -->
   <div class="bg-gray-800 text-white rounded-lg p-6 mb-8 text-center">
+    <!-- アイコン（100px） -->
+    <div class="flex justify-center mb-4">
+      <%= user_avatar(@user, size: 100) %>
+    </div>
     <h1 class="text-3xl font-bold mb-2">
       <%= @user.email.split("@").first %> さんのページ
     </h1>

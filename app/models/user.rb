@@ -10,6 +10,8 @@ class User < ApplicationRecord
   # ユーザーはたくさんのいいねを持つ
   has_many :likes, dependent: :destroy
 
+  has_one_attached :avatar
+
   # おまけメソッド（Viewで使うと便利！）
   # 「このユーザーは、この投稿にいいねしてる？」を判定するメソッド
   def already_liked?(post)

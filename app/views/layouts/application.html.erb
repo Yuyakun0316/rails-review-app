@@ -37,9 +37,18 @@
         <nav>
           <% if user_signed_in? %>
             <!-- ログインしている時 -->
-            <span class="mr-4 text-sm text-gray-600">
-              ログイン中: <%= current_user.email %>
-            </span>
+            <div class="flex items-center gap-2 mr-4 text-sm text-gray-600">
+              
+              <!-- 1. 自分のアイコンを表示 -->
+              <%= user_avatar(current_user, size: 30) %>
+              
+              <!-- 2. メールアドレス -->
+              <span><%= current_user.email %></span>
+
+              <!-- 3. プロフィール編集画面へのリンク（ここから画像を変えに行けます） -->
+              <%= link_to "設定", edit_user_registration_path, class: "text-xs text-gray-400 underline ml-1 hover:text-blue-500" %>
+            </div>
+
             <%= link_to "ログアウト", destroy_user_session_path, 
                 data: { turbo_method: :delete }, 
                 class: "text-red-500 hover:underline" %>

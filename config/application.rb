@@ -31,5 +31,6 @@ module RailsReviewApp
 
     # 2. タイムゾーンを日本時間にする（投稿日時などが日本時間になります）
     config.time_zone = 'Tokyo'
+    config.active_storage.variant_processor = :mini_magick
   end
 end
