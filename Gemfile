@@ -69,10 +69,10 @@ group :development do
   gem 'web-console'
 
   # RuboCopを導入する
+  gem 'annotaterb'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'annotaterb'
 end
 
 group :test do
