@@ -16,11 +16,11 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
 
   # 1. 自分がフォローしている人たち（active_relationships）
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
 
   # 2. 自分をフォローしている人たち（passive_relationships）
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
   # --- ヘルパーメソッド（便利機能） ---
