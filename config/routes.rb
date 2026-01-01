@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   devise_for :users
   get 'posts/index'
   # ユーザー詳細ページへのパス
-  resources :users, only: [:show]
+  # resources :users, only: [:show]
+  # 変更後：do ... end でブロックを作る
+  resources :users, only: [:show] do
+    # /users/:id/likes というURLを作る設定
+    get :likes, on: :member
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

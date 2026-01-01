@@ -1,0 +1,55 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- タイトル部分 -->
+  <div class="bg-pink-50 text-pink-700 rounded-lg p-6 mb-8 text-center border border-pink-200">
+    <h1 class="text-3xl font-bold mb-2">
+      <%= @user.email.split("@").first %> さんのいいね一覧
+    </h1>
+    <p class="text-sm">
+      お気に入りの投稿: <%= @posts.total_count %> 件
+    </p>
+  </div>
+
+  <!-- 投稿一覧 -->
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div class="bg-white shadow rounded-lg p-6 mb-4 border border-gray-100">
+        
+        <div class="mb-2">
+          <%= link_to post_path(post), class: "hover:opacity-70 block" do %>
+            <p class="text-lg font-bold text-gray-800"><%= post.content %></p>
+          <% end %>
+
+          <!-- 投稿者表示（誰の投稿か分かるように） -->
+          <div class="text-sm text-gray-500 mt-2 flex items-center gap-2">
+             <% if post.user %>
+                <%# user_avatarヘルパーを使用 %>
+                <%= user_avatar(post.user, size: 20) %>
+                <span><%= post.user.email %></span>
+             <% else %>
+                <span>退会済みユーザー</span>
+             <% end %>
+          </div>
+        </div>
+
+        <!-- 画像があれば表示 -->
+        <% if post.image.attached? %>
+          <div class="mt-3">
+            <%= image_tag post.image, class: "rounded-lg max-h-40 object-cover" %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
+
+    <!-- ページネーション -->
+    <div class="mt-4 flex justify-center pb-10">
+      <%= paginate @posts %>
+    </div>
+  <% else %>
+    <p class="text-gray-500 text-center py-10">まだ「いいね」した投稿はありません。</p>
+  <% end %>
+  
+  <div class="text-center mt-6">
+    <%= link_to "マイページに戻る", user_path(@user), class: "text-gray-500 underline" %>
+  </div>
+</div>

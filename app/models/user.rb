@@ -12,6 +12,9 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  # 「likesテーブルを経由して、postデータ（liked_posts）を取得する」という命令
+  has_many :liked_posts, through: :likes, source: :post
+
   # おまけメソッド（Viewで使うと便利！）
   # 「このユーザーは、この投稿にいいねしてる？」を判定するメソッド
   def already_liked?(post)

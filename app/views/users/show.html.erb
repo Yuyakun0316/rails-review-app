@@ -11,6 +11,10 @@
     <p class="text-gray-400">
       投稿数: <%= @user.posts.count %> 件
     </p>
+    <!-- いいね一覧へのボタン -->
+    <%= link_to likes_user_path(@user), class: "inline-block bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full text-sm transition" do %>
+      ♥ いいねした投稿を見る
+    <% end %>
   </div>
 
   <h2 class="text-xl font-bold mb-4 border-b pb-2">このユーザーの投稿一覧</h2>
