@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def likes
     # 1. ユーザーを探す
     @user = User.find(params[:id])
-    
+
     # 2. そのユーザーが「いいねした投稿」を取得
     # N+1対策（includes）も忘れずに！
     @posts = @user.liked_posts.includes(:user).with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
