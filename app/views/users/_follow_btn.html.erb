@@ -1,0 +1,14 @@
+<%# 自分自身のページにはフォローボタンを出さない %>
+<% if current_user != user %>
+  
+  <div id="follow-button-<%= user.id %>">
+    <% if current_user.following?(user) %>
+      <!-- フォロー解除ボタン -->
+      <%= button_to "フォロー中", user_relationships_path(user), method: :delete, class: "bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold hover:bg-red-100 hover:text-red-600" %>
+    <% else %>
+      <!-- フォローするボタン -->
+      <%= button_to "フォローする", user_relationships_path(user), method: :post, class: "bg-black text-white px-4 py-2 rounded-full font-bold hover:bg-gray-800" %>
+    <% end %>
+  </div>
+
+<% end %>

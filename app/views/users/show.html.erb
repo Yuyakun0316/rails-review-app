@@ -8,6 +8,17 @@
     <h1 class="text-3xl font-bold mb-2">
       <%= @user.email.split("@").first %> さんのページ
     </h1>
+    <!-- フォロー数・フォロワー数 -->
+    <div id="user-stats" class="flex justify-center gap-4 mb-4 text-sm">
+      <span>フォロー: <strong><%= @user.following.count %></strong></span>
+      <span>フォロワー: <strong><%= @user.followers.count %></strong></span>
+    </div>
+
+    <!-- フォローボタン -->
+    <div class="mb-4">
+      <%= render 'users/follow_btn', user: @user %>
+    </div>
+    
     <p class="text-gray-400">
       投稿数: <%= @user.posts.count %> 件
     </p>

@@ -1,0 +1,14 @@
+<%= turbo_stream.replace "follow-button-#{@user.id}" do %>
+  <%= render 'users/follow_btn', user: @user %>
+<% end %>
+<%# おまけ：フォロワー数も更新したい場合はここに追加できますが、まずはボタンだけでOK %>
+<%# 既存のボタン書き換え %>
+<%= turbo_stream.replace "follow-button-#{@user.id}" do %>
+  <%= render 'users/follow_btn', user: @user %>
+<% end %>
+
+<%# ★追加：数字の書き換え（update） %>
+<%= turbo_stream.update "user-stats" do %>
+  <span>フォロー: <strong><%= @user.following.count %></strong></span>
+  <span>フォロワー: <strong><%= @user.followers.count %></strong></span>
+<% end %>
