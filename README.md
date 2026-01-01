@@ -67,6 +67,7 @@
 - kaminari
 - Active Storage
 - Ransack
+- annotaterb (スキーマ情報の自動出力)
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
