@@ -40,4 +40,8 @@ class Post < ApplicationRecord
   def self.ransackable_associations(_auth_object = nil)
     ['user']
   end
+
+  # 「特定のユーザーたちが書いた投稿」だけを取り出す便利メソッド（scope）
+  # Post.where(user_id: [1, 2, 3]) みたいなSQLを簡単に作れるようにします
+  scope :by_users, ->(user_ids) { where(user_id: user_ids) }
 end

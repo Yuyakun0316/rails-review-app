@@ -15,6 +15,21 @@
   <% end %>
 </div>
 
+<!-- タブ切り替えエリア -->
+<div class="flex border-b border-gray-200 mb-6">
+  <%# 「すべて」タブ %>
+  <%# params[:type] が空なら、こっちをアクティブ（黒字・下線）にする %>
+  <%= link_to "すべての投稿", root_path, 
+      class: "flex-1 text-center py-3 #{params[:type].nil? ? 'border-b-2 border-blue-500 font-bold text-blue-600' : 'text-gray-500 hover:text-gray-700'}" %>
+
+  <%# 「フォロー中」タブ（ログイン時のみ表示） %>
+  <% if user_signed_in? %>
+    <%# params[:type] が 'following' なら、こっちをアクティブにする %>
+    <%= link_to "フォロー中", root_path(type: "following"), 
+        class: "flex-1 text-center py-3 #{params[:type] == 'following' ? 'border-b-2 border-blue-500 font-bold text-blue-600' : 'text-gray-500 hover:text-gray-700'}" %>
+  <% end %>
+</div>
+
 <!-- 新規投稿フォーム -->
 <div style="background-color: #f0f0f0; padding: 15px; margin-bottom: 20px;">
   <h3>新規投稿</h3>
