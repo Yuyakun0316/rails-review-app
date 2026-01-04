@@ -41,6 +41,17 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # 1. 自分「が」送った通知（active_notifications）
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  
+  # 2. 自分「に」届いた通知（passive_notifications）
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  
+  # 3. 未読の通知があるか確認するメソッド（後でヘッダーで使います！）
+  def unchecked_notifications?
+    passive_notifications.where(checked: false).any?
+  end
+
   # --- ヘルパーメソッド（便利機能） ---
 
   # ユーザーをフォローする
