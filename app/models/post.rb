@@ -36,23 +36,21 @@ class Post < ApplicationRecord
   # 通知を作成するメソッド
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索（連打された時に通知が何個も行かないように）
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
-    
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like'])
+
     # 通知がまだ存在しない場合のみ作成
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        post_id: id,
-        visited_id: user_id,
-        action: 'like'
-      )
-      
-      # 自分の投稿にいいねした場合は、最初から「既読」にしておく（通知しなくていい）
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.new(
+      post_id: id,
+      visited_id: user_id,
+      action: 'like'
+    )
+
+    # 自分の投稿にいいねした場合は、最初から「既読」にしておく（通知しなくていい）
+    notification.checked = true if notification.visitor_id == notification.visited_id
+
+    notification.save if notification.valid?
   end
 
   # content（本文）と created_at（日時）での検索を許可する
