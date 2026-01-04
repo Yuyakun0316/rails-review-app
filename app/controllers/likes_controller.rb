@@ -8,6 +8,9 @@ class LikesController < ApplicationController
     # いいねを作成
     current_user.likes.create(post_id: @post.id)
 
+    # 「この投稿に対して、今のユーザーがいいねしたよ」という通知を作成
+    @post.create_notification_like!(current_user)
+
     # Turbo Streamでレスポンス（後述の create.turbo_stream.erb を探してくれる）
   end
 

@@ -1,0 +1,37 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6 text-center">通知一覧</h1>
+
+  <div class="bg-white shadow rounded-lg max-w-2xl mx-auto">
+    <% if @notifications.exists? %>
+      <% @notifications.each do |notification| %>
+        
+        <!-- 通知1件分 -->
+        <div class="border-b border-gray-100 p-4 flex items-center gap-4 hover:bg-gray-50 <%= 'bg-blue-50' unless notification.checked? %>">
+          
+          <!-- アイコン（以前作ったヘルパーを活用！） -->
+          <%= user_avatar(notification.visitor, size: 40) %>
+
+          <div class="flex-1">
+            <p class="text-gray-800">
+              <!-- さっき作ったヘルパーでメッセージを表示 -->
+              <%= notification_form(notification) %>
+            </p>
+            <p class="text-xs text-gray-400 mt-1">
+              <%= time_ago_in_words(notification.created_at) %>前
+            </p>
+          </div>
+          
+        </div>
+
+      <% end %>
+      
+      <!-- ページネーション -->
+      <div class="p-4 flex justify-center">
+        <%= paginate @notifications %>
+      </div>
+
+    <% else %>
+      <p class="text-center py-10 text-gray-500">通知はありません</p>
+    <% end %>
+  </div>
+</div>

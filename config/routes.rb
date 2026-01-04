@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "notifications/index"
   # 1. トップページの設定
   root 'posts#index'
 
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resource :likes, only: [:create, :destroy]
   end
+
+  resources :notifications, only: :index
 
   # 5. ヘルスチェック（Rails 7/8標準）
   get 'up' => 'rails/health#show', as: :rails_health_check
