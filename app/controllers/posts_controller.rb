@@ -18,16 +18,16 @@ class PostsController < ApplicationController
     posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc)
 
     # 3. タブの選択状況によってデータを絞り込む
-    if params[:type] == "following" && user_signed_in?
-      # 「フォロー中」タブが選ばれた場合
-      # current_user.following_ids で自分がフォローしている人のID一覧を取得し、
-      # モデルで定義した scope :by_users を使って絞り込みます
-      @posts = posts.by_users(current_user.following_ids).page(params[:page]).per(5)
-    else
-      # 「すべて」タブ、またはログインしていない場合
-      # 絞り込みをせずにそのままページネーションします
-      @posts = posts.page(params[:page]).per(5)
-    end
+    @posts = if params[:type] == 'following' && user_signed_in?
+               # 「フォロー中」タブが選ばれた場合
+               # current_user.following_ids で自分がフォローしている人のID一覧を取得し、
+               # モデルで定義した scope :by_users を使って絞り込みます
+               posts.by_users(current_user.following_ids).page(params[:page]).per(5)
+             else
+               # 「すべて」タブ、またはログインしていない場合
+               # 絞り込みをせずにそのままページネーションします
+               posts.page(params[:page]).per(5)
+             end
   end
 
   # showアクションを追加（中身は空でOK。before_actionがやってくれるから）
