@@ -79,7 +79,7 @@
       あと <span data-character-count-target="output">140</span> 文字
     </div>
     
-    <%= f.submit "投稿する", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= f.submit "投稿する", class: "btn-primary w-full" %>
     
   <% end %>
 </div>
@@ -88,10 +88,13 @@
 
 <h2>投稿一覧</h2>
 
-<%# @posts という配列から、1つずつ post に入れて繰り返す %>
-<% @posts.each do |post| %>
+<!-- grid-cols-1 (スマホは1列) / md:grid-cols-2 (タブレット以上は2列) / gap-6 (隙間を空ける) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <%# @posts という配列から、1つずつ post に入れて繰り返す %>
+  <% @posts.each do |post| %>
+    <!-- カード自体の幅指定などは削除して、親のグリッドに任せます -->
+    <div class="bg-white shadow rounded-lg p-6 border border-gray-100 h-full flex flex-col justify-between">
 
-    <div class="bg-white shadow rounded-lg p-6 mb-4 border border-gray-100">
       <div class="mb-2">
         <%# 1. 投稿内容（クリックで詳細へ） %>
         <%= link_to post_path(post), class: "hover:opacity-70" do %>
@@ -157,6 +160,7 @@
   </div>
 </div>
 <% end %>
+</div>
 
 <!-- ページ送りボタン -->
 <div class="mt-4 flex justify-center pb-10">
