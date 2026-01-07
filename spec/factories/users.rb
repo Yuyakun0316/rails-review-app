@@ -5,8 +5,10 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  address                :string(255)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
+#  postal_code            :string(255)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string(255)

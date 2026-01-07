@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     # アカウント登録時（sign_up）と、プロフィール変更時（account_update）に
-    # :avatar カラムの操作を許可する
-    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :postal_code, :address])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar, :postal_code, :address])
   end
 end

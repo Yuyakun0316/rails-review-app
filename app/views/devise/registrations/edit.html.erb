@@ -13,6 +13,39 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <!-- ★★★ 郵便番号・住所入力エリア ★★★ -->
+  <div class="field mb-4 mt-4" data-controller="address-fill">
+    
+    <div class="mb-2">
+      <%= f.label :postal_code, "郵便番号（ハイフンなし7桁）", class: "block font-bold mb-1" %>
+      <div class="flex gap-2">
+        <!-- 入力欄 -->
+        <%= f.text_field :postal_code, 
+            class: "border p-2 rounded w-40", 
+            placeholder: "1000001",
+            data: { address_fill_target: "postalCode" } %>
+            
+        <!-- 検索ボタン -->
+        <button type="button" 
+                data-action="click->address-fill#search"
+                class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 text-sm cursor-pointer">
+          住所検索
+        </button>
+      </div>
+      <!-- エラーメッセージ -->
+      <span data-address-fill-target="error" class="text-red-500 text-sm"></span>
+    </div>
+
+    <div class="mb-2">
+      <%= f.label :address, "住所", class: "block font-bold mb-1" %>
+      <!-- 住所欄 -->
+      <%= f.text_field :address, 
+          class: "w-full border p-2 rounded", 
+          data: { address_fill_target: "address" } %>
+    </div>
+
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
