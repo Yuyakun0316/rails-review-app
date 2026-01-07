@@ -65,6 +65,9 @@
 - **メール通知機能 (Action Mailer)**
   - ユーザー登録時のウェルカムメール送信
   - 開発環境でのメール確認ツール（Letter Opener Web）の導入
+- **住所自動入力 (外部API連携)**
+  - 郵便番号入力時に `zipcloud API` を使用して住所を自動補完
+  - Stimulusの `fetch` APIによる非同期通信
 
 
 ## 🛠 使用技術
@@ -84,6 +87,7 @@
 - annotaterb (スキーマ情報の自動出力)
 - Action Mailer
 - Letter Opener Web
+- zipcloud API (外部サービス)
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
