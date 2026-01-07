@@ -68,6 +68,8 @@
 - **住所自動入力 (外部API連携)**
   - 郵便番号入力時に `zipcloud API` を使用して住所を自動補完
   - Stimulusの `fetch` APIによる非同期通信
+- **パンくずリスト (Breadcrumbs)**
+  - `gretel` を使用した階層ナビゲーションの表示
 
 
 ## 🛠 使用技術
@@ -88,6 +90,7 @@
 - Action Mailer
 - Letter Opener Web
 - zipcloud API (外部サービス)
+- gretel
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
