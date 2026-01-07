@@ -62,6 +62,9 @@
   - Tailwind CSS (Grid) を使用した、デバイス幅に応じたレイアウト切り替え
 - **デザインの共通化**
   - `@apply` ディレクティブを使用したボタンコンポーネントの作成と再利用
+- **メール通知機能 (Action Mailer)**
+  - ユーザー登録時のウェルカムメール送信
+  - 開発環境でのメール確認ツール（Letter Opener Web）の導入
 
 
 ## 🛠 使用技術
@@ -79,6 +82,8 @@
 - Active Storage
 - Ransack
 - annotaterb (スキーマ情報の自動出力)
+- Action Mailer
+- Letter Opener Web
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
