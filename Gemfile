@@ -92,3 +92,5 @@ gem 'rails-i18n'
 gem 'kaminari'
 # 検索機能
 gem 'ransack'
+# パンくずリスト
+gem 'gretel'

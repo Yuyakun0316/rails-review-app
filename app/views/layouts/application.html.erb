@@ -71,6 +71,12 @@
     <!-- ここまでヘッダー -->
 
     <main class="container mx-auto mt-5 px-5">
+      <!-- パンくずリスト -->
+      <div class="mb-4 text-sm text-gray-500">
+        <%# breadcrumbs というヘルパーで表示 %>
+        <%# class: "..." でリンクの色などを指定 %>
+        <%= breadcrumbs separator: " &rsaquo; ", class: "hover:text-blue-500" %>
+      </div>
       <!-- フラッシュメッセージ（ログイン成功！などの通知） -->
       <% if notice %>
         <p class="bg-green-100 text-green-700 p-3 rounded mb-4"><%= notice %></p>
