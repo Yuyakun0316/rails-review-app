@@ -24,4 +24,9 @@ Rails.application.routes.draw do
 
   # 5. ヘルスチェック（Rails 7/8標準）
   get 'up' => 'rails/health#show', as: :rails_health_check
+
+  # 開発環境（development）の時だけ、メール確認ページを表示する
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

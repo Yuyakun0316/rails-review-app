@@ -47,6 +47,9 @@ class User < ApplicationRecord
   # 2. 自分「に」届いた通知（passive_notifications）
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
+  # データ作成後にメソッドを呼ぶ
+  after_create :send_welcome_email
+
   # 3. 未読の通知があるか確認するメソッド（後でヘッダーで使います！）
   def unchecked_notifications?
     passive_notifications.where(checked: false).any?
@@ -73,5 +76,12 @@ class User < ApplicationRecord
   # 「このユーザーは、この投稿にいいねしてる？」を判定するメソッド
   def already_liked?(post)
     likes.exists?(post_id: post.id)
+  end
+
+  private
+  
+  def send_welcome_email
+    # メイラーを呼び出して、deliver_now（今すぐ送る）
+    UserMailer.welcome_email(self).deliver_now
   end
 end

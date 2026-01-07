@@ -73,6 +73,8 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  # 開発中に「送られたメール」をブラウザで見るため
+  gem 'letter_opener_web'
 end
 
 group :test do
