@@ -80,6 +80,16 @@ class User < ApplicationRecord
     likes.exists?(post_id: post.id)
   end
 
+  # ゲストユーザーを探す、なければ作るメソッド
+  def self.guest
+    # find_or_create_by! は「探して、なければ作る」という超便利メソッド
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      # パスワードはランダムな文字列にする（誰も推測できないように）
+      user.password = SecureRandom.urlsafe_base64
+      # もし名前など必須項目があればここに追加（user.name = "ゲスト" など）
+    end
+  end
+
   private
   
   def send_welcome_email

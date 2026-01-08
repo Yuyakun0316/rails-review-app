@@ -4,7 +4,19 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   # 2. ユーザー認証（Devise）
-  devise_for :users
+  # 変更前
+  # devise_for :users
+
+  # 変更後：ここを書き換え！
+  # 1. sessionsコントローラーは、さっき作った 'users/sessions' を使うよ、という設定
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  # 2. ゲストログイン用のURLを作る
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
   
   # 3. ユーザー関連（マイページ、フォロー、いいね一覧）
   resources :users, only: [:show] do
