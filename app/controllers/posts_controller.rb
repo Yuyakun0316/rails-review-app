@@ -15,7 +15,11 @@ class PostsController < ApplicationController
 
     # 2. ベースとなる投稿データを準備（検索結果 + N+1対策 + 並び順）
     # ※ここではまだ「.page」などのページネーションはしません！変数 posts に一時保存します。
-    posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc)
+    # 変更前
+    # posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc)
+
+    # 変更後： .published をつけるだけで「公開中」だけ取れる！
+    posts = @q.result(distinct: true).published.includes(:user).with_attached_image.order(created_at: :desc)
 
     # 3. タブの選択状況によってデータを絞り込む
     @posts = if params[:type] == 'following' && user_signed_in?
@@ -50,11 +54,13 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to root_path, notice: '投稿しました！'
+      # 保存成功時：トップページへリダイレクト
+      redirect_to root_path, notice: "投稿しました！"
     else
-      # 保存失敗したら、一覧画面に戻す（変数を再取得する必要あり）
-      @posts = Post.includes(:user) # N+1対策で :user も追加しておくとGood
-      render :index, status: :unprocessable_content
+      # 保存失敗時（バリデーションエラーなど）：
+      # render :index だと @q がなくてエラーになるので、ここも redirect_to にしてしまいます。
+      # （エラーメッセージを表示したい場合は flash[:alert] を使います）
+      redirect_to root_path, alert: "投稿に失敗しました。内容を入力してください。"
     end
   end
 
@@ -90,8 +96,8 @@ class PostsController < ApplicationController
   # ストロングパラメーター（セキュリティ）
   # フォームから送られてきたデータの中から、content だけを許可する
   def post_params
-    # :image を追加
-    params.expect(post: %i[content image])
+    # :status を追加
+    params.require(:post).permit(:content, :image, :status)
   end
 
   # IDからデータを1つ探してきて、インスタンス変数 @post に入れるメソッド

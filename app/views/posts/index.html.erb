@@ -38,51 +38,7 @@
 <!-- これで character_count_controller.js がこのエリアを監視します -->
 <div data-controller="character-count">
 
-  <%# model: @post と書くことで、Postモデル用のフォームだとRailsが判断してくれる %>
-  <%= form_with model: @post, url: posts_path, local: true do |f| %>
-    
-    <div class="mb-2">
-      <%# 入力欄（ターゲット）: data-character-count-target="input" %>
-      <%# 入力するたびに動くアクション: data-action="input->character-count#count" %>
-      <%= f.text_area :content, 
-          class: "w-full border p-2 rounded", 
-          placeholder: "ここに入力してね",
-          rows: 3,
-          data: { 
-            character_count_target: "input", 
-            action: "input->character-count#count" 
-          } %>
-      <!-- 1. コントローラーを紐付け -->
-      <div class="mt-2" data-controller="image-preview">
-        
-        <!-- 2. ファイル選択ボタン -->
-        <!-- data-image-preview-target="input" を追加（JSからファイルを取得するため） -->
-        <!-- action: "change->..." を追加（選択が変わったら動かすため） -->
-        <%= f.file_field :image, 
-            class: "text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100",
-            data: { 
-              image_preview_target: "input",
-              action: "change->image-preview#preview" 
-            } %>
-
-        <!-- 3. プレビュー表示場所 -->
-        <!-- 最初は何も表示しないので hidden クラスをつけておく -->
-        <div class="mt-3">
-          <img data-image-preview-target="output" class="rounded-lg max-h-60 object-cover hidden">
-        </div>
-        
-      </div>
-    </div>
-
-    <!-- 文字数を表示する場所（ターゲット） -->
-    <div class="text-right text-sm text-gray-500 mb-2">
-      あと <span data-character-count-target="output">140</span> 文字
-    </div>
-    
-    <%= f.submit "投稿する", class: "btn-primary w-full" %>
-    
-  <% end %>
-</div>
+  <%= render 'form', post: @post %>
 
 <hr>
 

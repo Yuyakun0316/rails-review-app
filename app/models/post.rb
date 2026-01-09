@@ -6,6 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  content    :string(255)
+#  status     :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
@@ -66,4 +67,10 @@ class Post < ApplicationRecord
   # 「特定のユーザーたちが書いた投稿」だけを取り出す便利メソッド（scope）
   # Post.where(user_id: [1, 2, 3]) みたいなSQLを簡単に作れるようにします
   scope :by_users, ->(user_ids) { where(user_id: user_ids) }
+
+  # 0: published (公開), 1: draft (下書き)
+  enum :status, { published: 0, draft: 1 }
+
+  # バリデーションの調整（もしあれば）
+  # 下書きのときは中身が空でもいい、などのルール変更もできますが、今回はそのままでOK
 end

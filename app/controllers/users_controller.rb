@@ -5,9 +5,13 @@ class UsersController < ApplicationController
     # 1. URLのIDからユーザーを探す
     @user = User.find(params[:id])
 
-    # 2. そのユーザーの投稿を全部取得（新しい順）
-    # N+1対策で画像も一緒に持ってくる！
-    @posts = @user.posts.with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
+    # もし「ログイン中のユーザー」が「このページの本人」なら、全部（下書き含む）見せる
+    if current_user == @user
+      @posts = @user.posts.with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
+    else
+      # 他人のページなら、公開されているもの（published）だけ見せる
+      @posts = @user.posts.published.with_attached_image.order(created_at: :desc).page(params[:page]).per(5)
+    end
   end
 
   def likes

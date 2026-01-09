@@ -39,7 +39,13 @@
       <div class="bg-white shadow rounded-lg p-6 mb-4 border border-gray-100">
         <!-- 内容 -->
         <%= link_to post_path(post), class: "hover:opacity-70 block mb-2" do %>
-          <p class="text-lg font-bold text-gray-800"><%= post.content %></p>
+          <p class="text-lg font-bold text-gray-800">
+            <%# 下書きマークを表示 %>
+            <% if post.draft? %>
+              <span class="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded mr-2">下書き</span>
+            <% end %>
+            <%= post.content %>
+          </p>
         <% end %>
         
         <!-- 画像 -->
