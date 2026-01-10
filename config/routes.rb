@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get "notifications/index"
   # 1. トップページの設定
   root 'posts#index'

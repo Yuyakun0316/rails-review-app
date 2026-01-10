@@ -5,6 +5,14 @@ User.destroy_all
 
 puts "新しいデータを作成中..."
 
+puts "管理者ユーザーを作成中..."
+User.create!(
+  email: "admin@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  admin: true  # 管理者フラグをONにする
+)
+
 # 2. ログイン用の「テストユーザー」を1人作る
 # これを作っておけば、毎回「新規登録」しなくてもすぐにログインできます
 main_user = User.create!(
@@ -31,6 +39,6 @@ end
 
 puts "データ投入完了！"
 puts "---------------------------------"
-puts "ログイン用メール: test@gmail.com"
-puts "パスワード: Test1234"
+puts "管理者: admin@gmail.com / password"
+puts "一般: test@gmail.com / Test1234"
 puts "---------------------------------"

@@ -6,6 +6,7 @@
 #
 #  id                     :bigint           not null, primary key
 #  address                :string(255)
+#  admin                  :boolean          default(FALSE), not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  postal_code            :string(255)

@@ -1,0 +1,97 @@
+ja:
+  admin:
+    home:
+      name: "ホーム"
+    pagination:
+      previous: "&laquo; 前"
+      next: "次 &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "yy/mm/dd"
+      search: "検索"
+      filter: "絞り込み"
+      refresh: "更新"
+      show_all: "すべて表示"
+      add_filter: "絞り込み条件を追加"
+      bulk_menu_title: "選択した項目を..."
+      remove: "削除"
+      add_new: "新規作成"
+      chosen: "%{name} を選択"
+      chose_all: "すべて選択"
+      clear_all: "選択解除"
+      up: "上へ"
+      down: "下へ"
+      navigation: "ナビゲーション"
+      root_navigation: "メインナビゲーション"
+      navigation_static_label: "リンク"
+      log_out: "ログアウト"
+      time_ago: "%{time}前"
+      ago: "前"
+    flash:
+      successful: "%{name} の %{action} に成功しました"
+      error: "%{name} の %{action} に失敗しました"
+      noaction: "操作は変更されませんでした"
+      model_not_found: "'%{model_label}' モデルが見つかりません"
+      object_not_found: "IDが '%{id}' の %{model_label} が見つかりません"
+    table_headers:
+      model_name: "モデル名"
+      last_created: "最終作成日"
+      records: "件数"
+      username: "ユーザー"
+      changes: "変更"
+      created_at: "作成日時"
+      item: "項目"
+      message: "メッセージ"
+    actions:
+      dashboard:
+        title: "サイト管理"
+        menu: "ダッシュボード"
+        breadcrumb: "ダッシュボード"
+      index:
+        title: "%{model_label} 一覧"
+        menu: "一覧"
+        breadcrumb: "%{model_label}"
+      show:
+        title: "%{model_label} 詳細"
+        menu: "詳細"
+        breadcrumb: "%{model_label}"
+      show_in_app:
+        menu: "アプリで見る"
+      new:
+        title: "新規 %{model_label}"
+        menu: "追加"
+        breadcrumb: "新規"
+        link: "新規 %{model_label} を追加"
+        done: "作成しました"
+      edit:
+        title: "%{model_label} 編集"
+        menu: "編集"
+        breadcrumb: "編集"
+        link: "この %{model_label} を編集"
+        done: "更新しました"
+      delete:
+        title: "%{model_label} 削除"
+        menu: "削除"
+        breadcrumb: "削除"
+        link: "この %{model_label} を削除"
+        done: "削除しました"
+      bulk_delete:
+        title: "%{model_label} 一括削除"
+        menu: "一括削除"
+        breadcrumb: "一括削除"
+        bulk_link: "選択した %{model_label} を削除"
+      export:
+        title: "%{model_label} エクスポート"
+        menu: "エクスポート"
+        breadcrumb: "エクスポート"
+        link: "%{model_label} のエクスポート"
+        bulk_link: "選択した %{model_label} をエクスポート"
+        done: "エクスポートしました"
+      history_index:
+        title: "%{model_label} 履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"
+      history_show:
+        title: "%{model_label} 履歴"
+        menu: "履歴"
+        breadcrumb: "履歴"

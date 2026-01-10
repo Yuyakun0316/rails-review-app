@@ -5,7 +5,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 8.1.1'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
-gem 'propshaft'
+# gem 'propshaft'
+gem "sprockets-rails"
+# rails_adminのデザインを表示するために必要
+gem 'sassc-rails'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5'
 # Use the Puma web server [https://github.com/puma/puma]
@@ -94,3 +97,7 @@ gem 'kaminari'
 gem 'ransack'
 # パンくずリスト
 gem 'gretel'
+# 管理者画面
+gem 'rails_admin'
+
+gem 'jquery-rails'
