@@ -13,4 +13,37 @@ module ApplicationHelper
       content_tag :div, '', class: 'bg-gray-400 rounded-full', style: "width: #{size}px; height: #{size}px;"
     end
   end
+
+  # ページごとの完全なタイトルを返す
+  def page_title(page_title = '')
+    base_title = "Rails Review App"
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
+  end
+
+  # デフォルトのメタタグ設定
+  def default_meta_tags
+    {
+      site: 'Rails Review App',
+      title: '学習用SNSアプリ',
+      reverse: true, # "ページ名 | サイト名" の順にする
+      charset: 'utf-8',
+      description: 'Rails 8とHotwireを使って作成した、学習用のアウトプットアプリです。',
+      keywords: 'Rails,Ruby,プログラミング,学習',
+      canonical: request.original_url,
+      separator: '|',
+      og: {
+        site_name: :site,
+        title: :title,
+        description: :description,
+        type: 'website',
+        url: request.original_url,
+        image: image_url('ogp_sample.png'), # 配置する画像（後述）
+        locale: 'ja_JP',
+      },
+      twitter: {
+        card: 'summary_large_image', # 大きな画像で表示
+        # site: '@ツイッターのアカウント名', # あれば設定
+      }
+    }
+  end
 end
