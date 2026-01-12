@@ -99,7 +99,7 @@
         <%= render 'likes/btn', post: post %>
       <% else %>
         <!-- ログアウト中はハートの数だけ表示 -->
-        <span class="text-gray-400">♡ <%= post.likes.count %></span>
+        <span class="text-gray-400">♡ <%= post.likes.size %></span>
       <% end %>
     </div>
       

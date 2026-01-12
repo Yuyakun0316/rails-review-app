@@ -20,8 +20,7 @@ class PostsController < ApplicationController
 
     # 1. includes(:likes) を追加して「いいね」を読み込む
     # 2. user を includes する時に、さらにその先の avatar_attachment も読み込む（ネスト）
-    posts = @q.result(distinct: true).published.includes(:likes, user: { avatar_attachment: :blob }).with_attached_image.order(created_at: :desc)
-
+    posts = @q.result(distinct: true).published.includes(user: { avatar_attachment: :blob }).with_attached_image.order(created_at: :desc)
     # 3. タブの選択状況によってデータを絞り込む
     @posts = if params[:type] == 'following' && user_signed_in?
                # 「フォロー中」タブが選ばれた場合

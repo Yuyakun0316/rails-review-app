@@ -4,12 +4,13 @@
 #
 # Table name: posts
 #
-#  id         :bigint           not null, primary key
-#  content    :string(255)
-#  status     :integer          default("published"), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  id          :bigint           not null, primary key
+#  content     :string(255)
+#  likes_count :integer          default(0), not null
+#  status      :integer          default("published"), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #

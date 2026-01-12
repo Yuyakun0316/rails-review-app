@@ -12,6 +12,8 @@ class LikesController < ApplicationController
     @post.create_notification_like!(current_user)
 
     # Turbo Streamでレスポンス（後述の create.turbo_stream.erb を探してくれる）
+    # データベースから最新の likes_count を取得し直す
+    @post.reload
   end
 
   def destroy
@@ -20,6 +22,7 @@ class LikesController < ApplicationController
     like.destroy
 
     # Turbo Streamでレスポンス
+    @post.reload
   end
 
   private

@@ -23,7 +23,10 @@
 #
 class Like < ApplicationRecord
   belongs_to :user
-  belongs_to :post
+  # belongs_to :post
+  # 変更後: counter_cache: true を追加！
+  # これだけで、いいね作成時に posts.likes_count が +1 され、削除時に -1 されます
+  belongs_to :post, counter_cache: true
 
   # 【重要】user_id と post_id の組み合わせは一意（ユニーク）であること
   # つまり、同じ投稿に2回いいねはできない！

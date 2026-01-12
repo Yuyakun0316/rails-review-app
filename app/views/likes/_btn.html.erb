@@ -6,13 +6,13 @@
   <% if current_user.already_liked?(post) %>
     <!-- すでにいいねしている場合：取り消しボタン（赤色） -->
     <%= button_to post_likes_path(post), method: :delete, class: "text-red-500 hover:text-red-700" do %>
-      ♥ <%= post.likes.count %>
+      ♥ <%= post.likes.size %>
     <% end %>
     
   <% else %>
     <!-- まだいいねしていない場合：いいねボタン（灰色） -->
     <%= button_to post_likes_path(post), method: :post, class: "text-gray-400 hover:text-red-500" do %>
-      ♡ <%= post.likes.count %>
+      ♡ <%= post.likes.size %>
     <% end %>
     
   <% end %>
