@@ -78,6 +78,8 @@ group :development do
   gem 'rubocop-rspec', require: false
   # 開発中に「送られたメール」をブラウザで見るため
   gem 'letter_opener_web'
+  # N+1問題を検知するツール
+  gem 'bullet'
 end
 
 group :test do

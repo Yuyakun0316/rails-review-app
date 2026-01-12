@@ -18,8 +18,9 @@ class PostsController < ApplicationController
     # 変更前
     # posts = @q.result(distinct: true).includes(:user).with_attached_image.order(created_at: :desc)
 
-    # 変更後： .published をつけるだけで「公開中」だけ取れる！
-    posts = @q.result(distinct: true).published.includes(:user).with_attached_image.order(created_at: :desc)
+    # 1. includes(:likes) を追加して「いいね」を読み込む
+    # 2. user を includes する時に、さらにその先の avatar_attachment も読み込む（ネスト）
+    posts = @q.result(distinct: true).published.includes(:likes, user: { avatar_attachment: :blob }).with_attached_image.order(created_at: :desc)
 
     # 3. タブの選択状況によってデータを絞り込む
     @posts = if params[:type] == 'following' && user_signed_in?
