@@ -1,3 +1,5 @@
+Faker::Config.locale = :ja
+
 # 1. 既存のデータを全て消す（重複を防ぐため）
 puts "古いデータを削除中..."
 User.destroy_all
