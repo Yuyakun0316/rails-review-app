@@ -84,6 +84,8 @@
 - **パフォーマンス最適化**
   - `Bullet` によるN+1問題の検出と解消
   - カウンターキャッシュ（`counter_cache`）によるいいね数のカウント処理高速化
+- **データ可視化 (Chartkick)**
+  - マイページでの週間投稿数のグラフ表示
 
 
 ## 🛠 使用技術
@@ -110,6 +112,8 @@
 - sprockets-rails (管理画面用のアセット管理)
 - meta-tags
 - Bullet (N+1問題の検出)
+- Chartkick / Chart.js (CDN)
+- groupdate
 
 ## 💡 工夫した点・学んだこと
 - **RubyとRailsの繋がり**:
