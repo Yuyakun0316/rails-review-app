@@ -33,6 +33,14 @@
     <% end %>
   </div>
 
+  <!-- 活動履歴グラフ -->
+  <div class="mb-8">
+    <h3 class="text-xl font-bold mb-4">過去1週間の活動</h3>
+    <%# 1週間分の投稿数を棒グラフで表示（高さ200px） %>
+    <%# group_by_day(:created_at).count で日別の集計が一瞬でできます %>
+    <%= column_chart @user.posts.group_by_day(:created_at, range: 1.week.ago..Time.now).count, height: "200px", colors: ["#3b82f6"] %>
+  </div>
+
   <h2 class="text-xl font-bold mb-4 border-b pb-2">このユーザーの投稿一覧</h2>
 
   <!-- 投稿一覧 -->

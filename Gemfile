@@ -105,3 +105,7 @@ gem 'rails_admin'
 gem 'jquery-rails'
 # OGP（オージーピー）設定
 gem 'meta-tags'
+# グラフ描画
+gem "chartkick"
+# 日付ごとの集計を簡単に
+gem "groupdate"
